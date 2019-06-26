@@ -9,34 +9,34 @@ from sklearn.preprocessing import scale
 def predict(clf,X):
     return np.dot(clf[:-1],X) + clf[-1]
 #------------OVR------------------------------
-classifiers = np.loadtxt("OVRmodel.txt")
-def predict_class(X, classifiers):
-    predictions = np.zeros(len(classifiers))
-    for idx, clf in enumerate(classifiers):
-        predictions[idx] = predict(clf,X)
-        print(predictions[idx])
-    out = np.argmin(predictions[:])
-    return out
+# classifiers = np.loadtxt("OVRmodel.txt")
+# def predict_class(X, classifiers):
+#     predictions = np.zeros(len(classifiers))
+#     for idx, clf in enumerate(classifiers):
+#         predictions[idx] = predict(clf,X)
+#         print(predictions[idx])
+#     out = np.argmin(predictions[:])
+#     return out
 #----------------------------------------------
 #------------OVO------------------------------
-# classifiers = np.loadtxt("OVOmodel.txt")
-# def predict_class(X, classifiers):
-#     predictions = np.zeros(10)
-#     pre=int(0)
-#     pos=int(1)
-#     for idx, clf in enumerate(classifiers):
-#         if(pos==10):
-#         	pre = pre+1
-#         	pos = pre+1
-#         _predict = predict(clf,X)
-#         if(_predict>0):
-#         	predictions[pos]=predictions[pos]+1
-#         else:
-#         	predictions[pre]=predictions[pre]+1
-#         pos = pos + 1
+classifiers = np.loadtxt("OVOmodel.txt")
+def predict_class(X, classifiers):
+    predictions = np.zeros(10)
+    pre=int(0)
+    pos=int(1)
+    for idx, clf in enumerate(classifiers):
+        if(pos==10):
+        	pre = pre+1
+        	pos = pre+1
+        _predict = predict(clf,X)
+        if(_predict>0):
+        	predictions[pos]=predictions[pos]+abs(_predict)
+        else:
+        	predictions[pre]=predictions[pre]+abs(_predict)
+        pos = pos + 1
 
-#     out = np.argmax(predictions[:])
-#     return out
+    out = np.argmax(predictions[:])
+    return out
 #----------------------------------------------
 
 training_dataframe = pd.read_csv('Input/train.csv')
