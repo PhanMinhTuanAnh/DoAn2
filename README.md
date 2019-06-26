@@ -4,4 +4,5 @@
 	. Yêu cầu : Ngôn ngữ Python, Chạy bằng console	
 	. Input : Dữ liệu chữ viết tay đã có nhãn https://www.kaggle.com/c/digit-recognizer
 	. Ouput : Nhận dạng chữ số viết tay chưa có nhãn
+	. Thời gian train : 10p
 	#performance : 70% , quá thấp , vẫn đang cải tiến ...
