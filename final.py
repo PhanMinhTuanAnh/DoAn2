@@ -14,7 +14,7 @@ def predict(clf,X):
 #     predictions = np.zeros(len(classifiers))
 #     for idx, clf in enumerate(classifiers):
 #         predictions[idx] = predict(clf,X)
-#         print(predictions[idx])
+#         #print(predictions[idx])
 #     out = np.argmin(predictions[:])
 #     return out
 #----------------------------------------------
@@ -40,7 +40,7 @@ def predict_class(X, classifiers):
 #----------------------------------------------
 
 training_dataframe = pd.read_csv('Input/train.csv')
-rcount = int(0.1*training_dataframe.shape[0])
+rcount = int(0.5*training_dataframe.shape[0])
 subset_training_dataframe = training_dataframe.sample(n=rcount)
 X = subset_training_dataframe.drop("label", axis = 1)
 y = subset_training_dataframe.label.values.astype(int)
