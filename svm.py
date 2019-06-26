@@ -5,9 +5,6 @@ import random as rnd
 filepath = os.path.dirname(os.path.abspath(__file__))
 
 class SVM():
-    
-    
-    
     def __init__(self, max_iter=10000, kernel_type='linear', C=1.0, epsilon=0.001):
         self.kernels = {
             'linear' : self.kernel_linear,

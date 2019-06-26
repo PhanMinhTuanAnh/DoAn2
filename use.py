@@ -20,12 +20,13 @@ training_dataframe = pd.read_csv('Input/train.csv')
 
 testing_dataframe = pd.read_csv('Input/test.csv')
 
-rcount = int(0.002*training_dataframe.shape[0])
+rcount = int(0.05*training_dataframe.shape[0])
 subset_training_dataframe = training_dataframe.sample(n=rcount)
 
 classifiers = []
 
-for i in range (0,9):
+#--------OVR--------------
+for i in range (0,10):
 
 	X_i = subset_training_dataframe[subset_training_dataframe['label']==i].drop("label", axis = 1)
 	y_i = subset_training_dataframe[subset_training_dataframe['label']==i].label
@@ -63,11 +64,51 @@ for i in range (0,9):
 
 	print(np.shape(classifiers))
 
-
-
-
-with open('testmodel.txt','wb') as f:
+with open('OVRmodel.txt','wb') as f:
 	np.savetxt(f, classifiers)
+#-------------------------------------------
+
+
+#------------------OVO----------------------
+# for i in range (0,9):
+# 	X_i = subset_training_dataframe[subset_training_dataframe['label']==i].drop("label", axis = 1)
+# 	y_i = subset_training_dataframe[subset_training_dataframe['label']==i].label
+# 	for j in range (i+1,10):
+# 		X_j = subset_training_dataframe[subset_training_dataframe['label']==j].drop("label", axis = 1)
+# 		y_j = subset_training_dataframe[subset_training_dataframe['label']==j].label
+
+
+# 		Xtemp = X_i.append(X_j)
+# 		ytemp = y_i.append(y_j)
+# 		ytemp = ytemp.values.astype(int)
+# 		#print(ytemp)
+# 		for z in range(0,ytemp.shape[0]):
+# 			if(ytemp[z]==i):
+# 				ytemp[z]=-1
+# 			else:
+# 				ytemp[z]=1
+# 		#print(ytemp)
+# 		Xtemp = scale(Xtemp)
+
+# 		X_train, X_test, y_train, y_test = train_test_split(Xtemp,ytemp, test_size = 0.2)
+
+# 		model = SVM()
+
+# 		model.fit(X_train,y_train)
+
+# 		y_predict = model.predict(X_test)
+
+# 		print(calc_acc(y_test,y_predict))
+
+# 		classifiers.append(np.append(model.w,[-model.b]))
+
+# 	#print(np.shape(classifiers))
+
+
+
+# with open('OVOmodel.txt','wb') as f:
+# 	np.savetxt(f, classifiers)
+#--------------------------------------------------
 
 
 
