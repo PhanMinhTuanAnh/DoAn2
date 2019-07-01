@@ -43,38 +43,38 @@ def predict_class(X, classifiers):
     return out
 #----------------------------------------------
 
-# training_dataframe = pd.read_csv('Input/train.csv')
-# rcount = int(0.5*training_dataframe.shape[0])
-# subset_training_dataframe = training_dataframe.sample(n=rcount)
-# X = subset_training_dataframe.drop("label", axis = 1)
-# y = subset_training_dataframe.label.values.astype(int)
-# X = scale(X)
-# sum = 0
-# for i in range(0,X.shape[0]):
-# 	y_predict = predict_class(X[i,:],classifiers)
-# 	print("predict:")
-# 	print(y_predict)
-# 	print("real:")
-# 	print(y[i])
-# 	if(y_predict==y[i]):
-# 		sum = sum + 1
-# print(sum/y.shape[0])
+training_dataframe = pd.read_csv('Input/train.csv')
+rcount = int(0.5*training_dataframe.shape[0])
+subset_training_dataframe = training_dataframe.sample(n=rcount)
+X = subset_training_dataframe.drop("label", axis = 1)
+y = subset_training_dataframe.label.values.astype(int)
+X = scale(X)
+sum = 0
+for i in range(0,X.shape[0]):
+	y_predict = predict_class(X[i,:],classifiers)
+	print("predict:")
+	print(y_predict)
+	print("real:")
+	print(y[i])
+	if(y_predict==y[i]):
+		sum = sum + 1
+print(sum/y.shape[0])
 
 
 
 
 
 #--------------Predict_TEST.csv----------
-testing_dataframe = pd.read_csv('Input/test.csv')
-rcount = int(0.005*testing_dataframe.shape[0])
-testing_dataframe = testing_dataframe.sample(n=rcount)
-testing_dataframe = scale(testing_dataframe)
-print(testing_dataframe[1])
-for i in range(0,10):
-	_2d = testing_dataframe[i].reshape(28,28)
-	plt.title(f'Predicted Label: {predict_class(testing_dataframe[i],classifiers)}')
-	plt.imshow(_2d)
-	plt.show()
+# testing_dataframe = pd.read_csv('Input/test.csv')
+# rcount = int(0.005*testing_dataframe.shape[0])
+# testing_dataframe = testing_dataframe.sample(n=rcount)
+# testing_dataframe = scale(testing_dataframe)
+# print(testing_dataframe[1])
+# for i in range(0,10):
+# 	_2d = testing_dataframe[i].reshape(28,28)
+# 	plt.title(f'Predicted Label: {predict_class(testing_dataframe[i],classifiers)}')
+# 	plt.imshow(_2d)
+# 	plt.show()
 
 #-------------DRAWimg-----------------
 # img = cv2.imread('28x28(1).png',0)

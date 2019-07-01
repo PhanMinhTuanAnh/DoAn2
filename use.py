@@ -20,7 +20,7 @@ training_dataframe = pd.read_csv('Input/train.csv')
 
 testing_dataframe = pd.read_csv('Input/test.csv')
 
-rcount = int(0.1*training_dataframe.shape[0])
+rcount = int(0.2*training_dataframe.shape[0])
 subset_training_dataframe = training_dataframe.sample(n=rcount)
 
 classifiers = []
