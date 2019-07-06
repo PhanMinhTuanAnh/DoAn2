@@ -22,8 +22,8 @@ def predict(clf,X):
 classifiers = np.loadtxt("OVOmodel.txt")
 def predict_class(X, classifiers):
     predictions = np.zeros(10)
-    pre=int(0)
-    pos=int(1)
+    pre=0
+    pos=1
     for idx, clf in enumerate(classifiers):
         if(pos==10):
         	pre = pre+1
@@ -44,7 +44,7 @@ def predict_class(X, classifiers):
 #----------------------------------------------
 
 training_dataframe = pd.read_csv('Input/train.csv')
-rcount = int(0.5*training_dataframe.shape[0])
+rcount = int(0.6*training_dataframe.shape[0])
 subset_training_dataframe = training_dataframe.sample(n=rcount)
 X = subset_training_dataframe.drop("label", axis = 1)
 y = subset_training_dataframe.label.values.astype(int)
@@ -60,11 +60,8 @@ for i in range(0,X.shape[0]):
 		sum = sum + 1
 print(sum/y.shape[0])
 
-
-
-
-
 #--------------Predict_TEST.csv----------
+
 # testing_dataframe = pd.read_csv('Input/test.csv')
 # rcount = int(0.005*testing_dataframe.shape[0])
 # testing_dataframe = testing_dataframe.sample(n=rcount)
@@ -77,10 +74,8 @@ print(sum/y.shape[0])
 # 	plt.show()
 
 #-------------DRAWimg-----------------
-# img = cv2.imread('28x28(1).png',0)
-# imgplt = plt.imshow(img,cmap='gray')
-# plt.show()
 
+# img = cv2.imread('28x28(1).png',0)
 # imgg =[]
 
 # for i in img:
@@ -89,8 +84,13 @@ print(sum/y.shape[0])
 # imgg = np.array(imgg)
 # imgg = scale(imgg)
 
+# plt.title(f'Predicted Label: {predict_class(imgg,classifiers)}')
+# plt.imshow(img,cmap='gray')
+# plt.show()
+
 # print(np.shape(imgg))
 # print(predict_class(imgg,classifiers))
-#------------------------------------------
 
+#------------------------------------------
+    
 
